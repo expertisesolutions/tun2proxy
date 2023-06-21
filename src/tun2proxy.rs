@@ -291,7 +291,7 @@ impl<'a> TunToProxy<'a> {
         let mut virt = VirtualTunDevice::new(tun.capabilities());
         let gateway4: Ipv4Addr = Ipv4Addr::from_str("0.0.0.1")?;
         let gateway6: Ipv6Addr = Ipv6Addr::from_str("::1")?;
-        let mut iface = Interface::new(config, &mut virt);
+        let mut iface = Interface::new(config, &mut virt, Instant::now());
         iface.update_ip_addrs(|ip_addrs| {
             ip_addrs.push(IpCidr::new(gateway4.into(), 0)).unwrap();
             ip_addrs.push(IpCidr::new(gateway6.into(), 0)).unwrap()
